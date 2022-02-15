@@ -9,8 +9,9 @@ class global_var:
     request_data_case = 7  # 依赖的返回数据
     request_data_case_file = 8  # 数据依赖字段
     data = 9  # 请求数据
-    expect = 10  # 预期结果
-    result = 11  # 实际结果
+    expect = 10  # 预期结果一
+    expect_two = 11# 预期结果二
+    result = 12  # 实际结果
 
 
 def get_id():
@@ -61,6 +62,8 @@ def get_result():
     return global_var.result
 
 
+def expect_two():
+    return global_var.expect_two
 
 def get_header_value():
     header = {

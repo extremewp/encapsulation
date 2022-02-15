@@ -18,6 +18,8 @@ class TestRun:
     def test_run(self):
         res =None
         rows_count = self.get_data.get_request_lines()
+        pass_count=[]
+        fail_count=[]
         for i in range(1,rows_count):
             is_run = self.get_data.get_request_run(i)
             if is_run :
@@ -26,19 +28,22 @@ class TestRun:
                 is_header = self.get_data.get_request_header(i)
                 is_data = self.get_data.get_request_from_user_data(i)
                 is_str_one = self.get_data.get_request_expcel(i)
+                is_str_two = self.get_data.get_request_expcel_two(i)
                 is_case = self.get_data.get_request_case(i)
                 if is_case == None:
                     res = self.run_method.run_main(is_mothod, is_url, is_data, is_header)
                     print(res)
                     test_values = None
-                    if self.common_util.is_contain(is_str_one, res):
+                    if self.common_util.is_contain(is_str_one,is_str_two, res):
                         test_values = "pass"
                         self.operation_excel.write_value(i, data_config.get_result(), test_values)
                         print("通过")
+                        pass_count.append(i)
                     else:
-                        test_values = "flass"
+                        test_values = res
                         self.operation_excel.write_value(i, data_config.get_result(), test_values)
-                        print("通过")
+                        fail_count.append(i)
+                        print("未通过")
                 else:
                     dependent_data = DependentData(is_case)
                     # 获取的依赖响应数据
@@ -51,14 +56,18 @@ class TestRun:
                     res = self.run_method.run_main(is_mothod, is_url, is_data, is_header)
                     print(res)
                     test_values = None
-                    if self.common_util.is_contain(is_str_one, res):
+                    if self.common_util.is_contain(is_str_one,is_str_two, res):
                         test_values = "pass"
                         self.operation_excel.write_value(i, data_config.get_result(), test_values)
                         print("通过")
+                        pass_count.append(i)
                     else:
-                        test_values = "flass"
+                        test_values = res
                         self.operation_excel.write_value(i, data_config.get_result(), test_values)
-                        print("通过")
+                        print("未通过")
+                        fail_count.append(i)
+        print(len(pass_count))
+        print(len(fail_count))
                     # assert res['code']
                     # self.
 

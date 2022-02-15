@@ -60,10 +60,16 @@ class GetData:
         operat_user = OperationUser()
         return operat_user.get_user_data(self.get_request_data(row))
 
-    # 获取excel中预期值
+    # 获取excel中预期值一
     def get_request_expcel(self, row):
         col = data_config.get_expect()
         return self.oper_excel.get_cell_value(row, col)
+
+    # 获取excel中预期值二
+    def get_request_expcel_two(self,row):
+        col = data_config.expect_two()
+        return self.oper_excel.get_cell_value(row,col)
+
 
     # 获取excel中是否有case
     def get_request_case(self,row):
