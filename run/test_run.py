@@ -68,14 +68,7 @@ class TestRun:
                         fail_count.append(i)
         print(len(pass_count))
         print(len(fail_count))
-                    # assert res['code']
-                    # self.
 
-
-
-
-
-                   # print(i)
 if __name__ == '__main__':
     tr=TestRun()
     tr.test_run()

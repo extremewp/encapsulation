@@ -1,6 +1,7 @@
 from data import data_config
 from util.common_util import CommonUtil
 from util.operation_excel import OperationExcel
+from util.operation_header import OperationHeader
 from util.operation_user import OperationUser
 
 
@@ -9,6 +10,7 @@ class GetData:
     def __init__(self):
         self.oper_excel = OperationExcel()
         self.common_util = CommonUtil()
+
 
     # 获取excel表中地行数
     def get_request_lines(self):
@@ -40,7 +42,10 @@ class GetData:
         col = data_config.get_request_header()
         header = self.oper_excel.get_cell_value(row=row, col=col)
         if header == 'yes':
-            header = data_config.get_header_value()
+            header_name = self.get_header_data_name(row)
+            oper_header = OperationHeader()
+            header = oper_header.get_header_data(header_name)
+            print(header)
         else:
             header = None
         return header
@@ -98,5 +103,14 @@ class GetData:
             return None
         else:
             return data
+
+
+    #   根据excel中请求数据名字获取header
+    def get_header_data_name(self,row):
+        col = data_config.get_data()
+        data = self.oper_excel.get_cell_value(row,col)
+        return data
+
+
 
 
