@@ -1,26 +1,32 @@
 #!/usr/bin/python3
 
-import pymysql
+import pymysql.cursors
 
 # 打开数据库连接
-db = pymysql.connect(host='localhost',
-                     user='root',
-                     password='wang7364',
-                     database='test_wangpeng')
+class MySqlUtil:
+    def __init__(self):
+        self.pmc = pymysql.connect(
+                             host='localhost',
+                             user='root',
+                             password='wang7364',
+                             database='test_wangpeng',
+                             cursorclass = pymysql.cursors.DictCursor
+        )
+        # 使用 cursor() 方法创建一个游标对象 cursor
+        self.cur=self.pmc.cursor()
 
-# 使用 cursor() 方法创建一个游标对象 cursor
-cursor = db.cursor()
+    def get_sql(self,sql):
+        self.cur.execute(sql)
+        resuit = self.cur.fetchone()
+        self.cur.close()
+        return resuit
 
-# 使用 execute() 方法执行 SQL，如果表存在则删除
-# cursor.execute("DROP TABLE IF EXISTS EMPLOYEE")
+if __name__ == '__main__':
+    mysqlutil =MySqlUtil()
+    sql = "select * from student"
+    print(mysqlutil.get_sql(sql))
 
-# 使用预处理语句创建表
-sql = """select * from student"""
 
-cursor.execute(sql)
-cu=cursor.fetchall()
-print(cu)
-# 关闭数据库连接
-db.close()
+
 
 
