@@ -1,5 +1,5 @@
-import pytest
-
+import sys
+sys.path.append("D:\Develop\encapsulation")
 from base.runmethod import RunMethod
 from data import data_config
 from data.dependent_data import DependentData

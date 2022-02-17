@@ -1,6 +1,6 @@
 import pytest
 import yaml
-
+import pymysql
 
 class YamlUser:
     def yaml_user(self):
