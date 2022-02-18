@@ -2,6 +2,7 @@ import pytest
 import yaml
 import pymysql
 
+
 class YamlUser:
     def yaml_user(self):
         data = {"user1": {"uid": "0", "service_id": "1", "os": "Android",
@@ -54,24 +55,23 @@ class YamlUser:
                 "shop": {"timestamp": "1507977102508", "uid": "5249191", "secrect": "34fc61cc4904ed061fcf78cb9803c758",
                          "token": "4f99f77c55a54ee98dd2d60bc463c041", "type_ids": [{"type": 4, "type_id": 21}]},
 
-                "order":{	"buy_type":"2",
-                        "type":"3",
-                        "goods_id":"48",
-                        "num":"1",
-                        "coupon_relation_id":"",
-                        "unit_price":"19900",
+                "order": {"buy_type": "2",
+                          "type": "3",
+                          "goods_id": "48",
+                          "num": "1",
+                          "coupon_relation_id": "",
+                          "unit_price": "19900",
 
-                             },
+                          },
                 "order11":
-	{
-	"order_id": "",
-
-
-}
+                    {
+                        "order_id": "",
+                    }
                 }
-        with open("../dataconfig/user.yml","w") as f:
+        with open("../dataconfig/user.yml", "w") as f:
             yaml.safe_dump(data=data, stream=f)
 
+
 if __name__ == '__main__':
-        yu=YamlUser()
-        yu.yaml_user()
+    yu = YamlUser()
+    yu.yaml_user()
