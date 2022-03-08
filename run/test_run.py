@@ -1,4 +1,8 @@
+import json
+import re
 import sys
+
+import requests
 
 sys.path.append("D:\Develop\encapsulation")
 from base.runmethod import RunMethod
@@ -69,6 +73,9 @@ class TestRun:
                         fail_count.append(i)
         print(len(pass_count))
         print(len(fail_count))
+
+
+
 
 
 if __name__ == '__main__':

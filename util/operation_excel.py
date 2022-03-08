@@ -1,3 +1,4 @@
+import requests
 import xlrd
 import yaml
 from xlutils.copy import copy
@@ -65,6 +66,21 @@ class OperationExcel:
         return cols
 
 
+    def tet_das(self):
+        url = "http://192.168.50.23:8380/login/loginvalidate"
+        data = {
+            "username": "wangpeng",
+            "password": "3f8b405bd2f1c15bd3418edeb5a208aa",
+                "scode": "1234"
+        }
+        header = {
+             "Content-Type":"application/x-www-form-urlencoded",
+              "Cookie" : "JSESSIONID=FE3CE190AF02191B1F489903F46A6FBC"
+        }
+        res = requests.post(url=url ,data = data,headers=header)
+        print(res.text)
+
+
 if __name__ == '__main__':
     gt = OperationExcel()
-    gt.write_value(1,11,"flass")
+    gt.tet_das()
